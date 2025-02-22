@@ -4,15 +4,9 @@ import re
 auth = tweepy.OAuthHandler("7t1BWZ6YiSoUt0GH2FUTPCb20", "qHJEUTmN2jNvhixcEPKPJSb7YTNxSKLwV1OVyAdZXoGoEssuIc")
 auth.set_access_token("1893171909791227909-Snejb5qC1VGH1Quyf0jWPohnlRfcuA", "bl8UVOi085Cwl1MzI8qxIE3KAy5URZmjCC2xtlr7T0DdK")
 api = tweepy.API(auth)
-
-# Hip-hop keywords
 enthusiasm_keywords = ["hip-hop", "rap", "Kendrick", "Drake", "vinyl", "mixtape"]
 purchase_keywords = ["bought", "copped", "ordered", "vinyl arrived"]
-
-# Function to score a user
-def score_user(username):
-    enthusiasm_score = 0
-    purchase_score = 0
+def score_user(username):enthusiasm_score = purchase_score = 0
     
     # Get user bio and recent posts
     try:
