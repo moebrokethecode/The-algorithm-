@@ -7,27 +7,20 @@ api = tweepy.API(auth)
 enthusiasm_keywords = ["hip-hop", "rap", "Kendrick", "Drake", "vinyl", "mixtape"]
 purchase_keywords = ["bought", "copped", "ordered", "vinyl arrived"]
 def score_user(username):enthusiasm_score = purchase_score = 0
-    
-    # Get user bio and recent posts
-    try:
-        user = api.get_user(screen_name=username)
-        bio = user.description.lower()
-        tweets = api.user_timeline(screen_name=username, count=50, tweet_mode="extended")
-    except Exception as e:
-        print(f"Error with {username}: {e}")
-        return None
-
-    # Check bio for enthusiasm
-    if any(keyword in bio for keyword in enthusiasm_keywords):
-        enthusiasm_score += 10
-
-    # Analyze tweets
-    for tweet in tweets:
-        text = tweet.full_text.lower()
-        if any(keyword in text for keyword in enthusiasm_keywords):
-            enthusiasm_score += 5
-        if any(keyword in text for keyword in purchase_keywords):
-            purchase_score += 20
+user = api.get_user(screen_name=username)
+bio = user.description.lower()
+tweets = api.user_timeline(screen_name=username, count=50, tweet_mode="extended")
+except Exception as e:
+print(f"Error with {username}: {e}")
+return None
+if any(keyword in bio for keyword in enthusiasm_keywords):
+enthusiasm_score += 10
+for tweet in tweets:
+text = tweet.full_text.lower()
+if any(keyword in text for keyword in enthusiasm_keywords):
+enthusiasm_score += 5
+if any(keyword in text for keyword in purchase_keywords):
+purchase_score += 20
 
     # Check following count for hip-hop artists (simplified)
     follows = api.get_friends(screen_name=username, count=50)
