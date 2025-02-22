@@ -1,10 +1,8 @@
 import tweepy
 import pandas as pd
 import re
-
-# X API credentials (replace with your own)
-auth = tweepy.OAuthHandler("CONSUMER_KEY", "CONSUMER_SECRET")
-auth.set_access_token("ACCESS_TOKEN", "ACCESS_TOKEN_SECRET")
+auth = tweepy.OAuthHandler("7t1BWZ6YiSoUt0GH2FUTPCb20", "qHJEUTmN2jNvhixcEPKPJSb7YTNxSKLwV1OVyAdZXoGoEssuIc")
+auth.set_access_token("1893171909791227909-Snejb5qC1VGH1Quyf0jWPohnlRfcuA", "bl8UVOi085Cwl1MzI8qxIE3KAy5URZmjCC2xtlr7T0DdK")
 api = tweepy.API(auth)
 
 # Hip-hop keywords
