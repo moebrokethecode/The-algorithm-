@@ -13,19 +13,19 @@ tweets = api.user_timeline(screen_name=username, count=50, tweet_mode="extended"
 except Exception as e:
 print(f"Error with {username}: {e}")
 return None
-    if any(keyword in bio for keyword in enthusiasm_keywords):
-        enthusiasm_score += 10
-    for tweet in tweets:
-        text = tweet.full_text.lower()
-        if any(keyword in text for keyword in enthusiasm_keywords):
-            enthusiasm_score += 5
-        if any(keyword in text for keyword in purchase_keywords):
-            purchase_score += 20
-    follows = api.get_friends(screen_name=username, count=50)
-    if len([f for f in follows if "music" in f.description.lower()]) > 5:
-        enthusiasm_score += 15
-    total_score = min(enthusiasm_score + purchase_score, 100)
-    return total_score if total_score >= 60 else None
+if any(keyword in bio for keyword in enthusiasm_keywords):
+enthusiasm_score += 10
+for tweet in tweets:
+text = tweet.full_text.lower()
+if any(keyword in text for keyword in enthusiasm_keywords):
+enthusiasm_score += 5
+if any(keyword in text for keyword in purchase_keywords):
+purchase_score += 20
+follows = api.get_friends(screen_name=username, count=50)
+if len([f for f in follows if "music" in f.description.lower()]) > 5:
+enthusiasm_score += 15
+total_score = min(enthusiasm_score + purchase_score, 100)
+return total_score if total_score >= 60 else None
 users = ["moedirection", "bigmoolive"]
 results = []
 for user in users:
